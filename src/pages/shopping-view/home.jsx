@@ -27,6 +27,7 @@ import { addToCart, fetchCartItem } from "@/store/shop/cart-slice"
 import { toast } from "sonner"
 import ProductDetailsDailog from "@/components/shopping-view/product-details"
 import { getFeatureImages } from "@/store/common-slice"
+import OurPolicy from "@/components/shopping-view/ourpolicy"
 
 
 const categoriesWithIcon = [
@@ -197,6 +198,9 @@ const ShoppingHome = () => {
             }
           </div>
         </div>
+      </section>
+      <section className="py-12">
+        <OurPolicy />
       </section>
       <ProductDetailsDailog open={openDetailsDailog} setOpen={setOpenDetailsDailog} productDetails={productDetails} />
     </div>
