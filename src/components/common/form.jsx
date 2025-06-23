@@ -1,11 +1,10 @@
-import { SelectContent } from "@radix-ui/react-select";
 import { Input } from '../ui/input';
 import { Label } from '../ui/label'
-import { Select, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 
-const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText }) => {
+const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled }) => {
 
     function renderInputsByComponentsType(getControlItem) {
         let element = null;
@@ -15,7 +14,7 @@ const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText 
             case 'input':
                 element = (<Input
                     name={getControlItem.name}
-                    palceholder={getControlItem.palceholder}
+                    placeholder={getControlItem.placeholder}
                     id={getControlItem.name}
                     type={getControlItem.type}
                     value={value}
@@ -29,18 +28,26 @@ const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText 
                 break;
             case 'select':
                 element = (
-                    <Select onValueChange={(value) => setFormData({
-                        ...formData,
-                        [getControlItem.name]: value
-                    })} value={value}>
+                    <Select
+                        onValueChange={(value) =>
+                            setFormData({
+                                ...formData,
+                                [getControlItem.name]: value,
+                            })
+                        }
+                        value={value}
+                    >
                         <SelectTrigger className="w-full">
-                            <SelectValue palceholder={getControlItem.palceholder} />
+                            <SelectValue placeholder={getControlItem.label} />
                         </SelectTrigger>
                         <SelectContent>
-                            {
-                                getControlItem.options && getControlItem.options.length > 0 ?
-                                    getControlItem.options.map(optionItem => <SelectItem key={optionItem.id}>{optionItem.Label}</SelectItem>) : null
-                            }
+                            {getControlItem.options && getControlItem.options.length > 0 
+                            ? getControlItem.options.map((optionItem) => (
+                                    <SelectItem key={optionItem.id} value={optionItem.id}>
+                                        {optionItem.label}
+                                    </SelectItem>
+                                ))
+                             : null}
                         </SelectContent>
                     </Select>
                 )
@@ -49,7 +56,7 @@ const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText 
                 element = (
                     <Textarea
                         name={getControlItem.name}
-                        palceholder={getControlItem.palceholder}
+                        placeholder={getControlItem.placeholder}
                         id={getControlItem.id}
                         value={value}
                         onChange={(event) =>
@@ -64,7 +71,7 @@ const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText 
             default:
                 element = (<Input
                     name={getControlItem.name}
-                    palceholder={getControlItem.palceholder}
+                    placeholder={getControlItem.placeholder}
                     id={getControlItem.name}
                     type={getControlItem.type}
                     value={value}
@@ -90,7 +97,7 @@ const CommonForm = ({ formControls, formData, setFormData, onSubmit, buttonText 
                     </div>
                 ))}
             </div>
-            <Button type="submit" className="mt-2 w-full">{buttonText || 'Submit'}</Button>
+            <Button disabled={isBtnDisabled} type="submit" className="mt-2 w-full">{buttonText || 'Submit'}</Button>
         </form>
     )
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
     isAuthenticated: false,
-    isLoading: false,
+    isLoading: true,
     user: null,
 };
 
@@ -41,7 +41,23 @@ export const loginUser = createAsyncThunk('/auth/login',
     }
 );
 
-export const checkAuth = createAsyncThunk('/auth/check-auth',
+export const logoutUser = createAsyncThunk('/auth/logout',
+    async (thunkAPI) => {
+        try {
+            const response = await axios.post(
+                "http://localhost:8080/api/auth/logOut", {},
+                {
+                    withCredentials: true
+                }
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
+
+export const checkAuth = createAsyncThunk('/auth/checkauth',
     async (thunkAPI) => {
         try {
             const response = await axios.get(
@@ -49,8 +65,9 @@ export const checkAuth = createAsyncThunk('/auth/check-auth',
                 {
                     withCredentials: true,
                     headers: {
-                        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-                        Expires: '0'
+                        "Cache-Control":
+                            "no-store, no-cache, must-revalidate, proxy-revalidate",
+                        Expires: '0',
                     }
                 },
             );
@@ -97,7 +114,9 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = null;
                 state.isAuthenticated = false;
-            }) .addCase(checkAuth.pending, (state) => {
+            })
+            
+            .addCase(checkAuth.pending, (state) => {
                 state.isLoading = true;
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
@@ -109,6 +128,11 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = null;
                 state.isAuthenticated = false;
+            })
+            .addCase(logoutUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = null;
+                state.isAuthenticated = action.payload.success;
             })
     }
 });

@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdmineFatures = () => {
   return (
-    <div>Admin</div>
+    <div>Admin Features</div>
   )
 }
 
