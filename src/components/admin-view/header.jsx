@@ -2,13 +2,16 @@ import { Button } from '../ui/button'
 import { AlignJustify, LogOut } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '@/store/auth-slice'
+import { useNavigate } from 'react-router-dom'
 
 const AdminHeader = ({setOpen}) => {
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function logOutUser(){
     dispatch(logoutUser());
+    navigate("/auth/login");
   }
 
   return (

@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 import axios from 'axios';
 import { Skeleton } from '../ui/skeleton';
 
-const ProductImageUpload = ({ imageFile, setImageFile, uploadedImageURL, setUploadedImageURL, setImageLoadingState, imageLoadingState, isEditMode }) => {
+const ProductImageUpload = ({ imageFile, setImageFile, uploadedImageURL, setUploadedImageURL, setImageLoadingState, imageLoadingState, isEditMode, isCustomStyling = false }) => {
 
   const inputRef = useRef(null);
 
@@ -50,7 +50,7 @@ const ProductImageUpload = ({ imageFile, setImageFile, uploadedImageURL, setUplo
   }, [imageFile])
 
   return (
-    <div className='w-full px-5 max-w-md mx-auto'>
+    <div className={`w-full px-5 ${isCustomStyling ? '' : 'max-w-md mx-auto'}`}>
       <Label className="text-md font-semibold mb-2 block">Upload Image</Label>
       <div
         onDragOver={handleDragOver}

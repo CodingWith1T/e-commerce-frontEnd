@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom"
 import { addToCart, fetchCartItem } from "@/store/shop/cart-slice"
 import { toast } from "sonner"
 import ProductDetailsDailog from "@/components/shopping-view/product-details"
+import { getFeatureImages } from "@/store/common-slice"
 
 
 const categoriesWithIcon = [
@@ -61,12 +62,11 @@ const ShoppingHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { productList, productDetails } = useSelector(state => state.shopProducuts)
   const [openDetailsDailog, setOpenDetailsDailog] = useState(false);
+  const { featureImageList } = useSelector(state => state.commonFeature);
 
   const { user } = useSelector(state => state.auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const slides = [bannerOne, bannerTwo, bannerThree];
 
   function handleNavigateToListingPage(getCurrentItem, section) {
     sessionStorage.removeItem('filters');
@@ -95,17 +95,17 @@ const ShoppingHome = () => {
   // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 2000)
+      setCurrentSlide((prev) => (prev + 1) % featureImageList.length)
+    }, 3000)
     return () => clearInterval(interval)
-  }, [slides.length])
+  }, [featureImageList.length])
 
   const goToPrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+    setCurrentSlide((prev) => (prev - 1 + featureImageList.length) % featureImageList.length)
   }
 
   const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
+    setCurrentSlide((prev) => (prev + 1) % featureImageList.length)
   }
 
   useEffect(() => {
@@ -117,18 +117,22 @@ const ShoppingHome = () => {
   }, [productDetails])
 
 
+  useEffect(() => {
+    dispatch(getFeatureImages());
+  }, [dispatch])
+
   return (
     <div className='flex flex-col min-h-screen'>
       <div className="relative w-full h-[600px] overflow-hidden">
         {
-          slides.map((slides, index) => (
+          featureImageList && featureImageList.length > 0 ? featureImageList.map((slides, index) => (
             <img
-              src={slides}
+              src={slides?.image}
               key={index}
               alt={`Slide ${index}`}
-              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+              className={`absolute top-0 left-0 w-full h-full object-fit transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
             />
-          ))}
+          )) : null}
         <Button onClick={goToPrev} variant="outline" size="icon" className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 z-20">
           <ChevronLeftIcon className="w-4 h-4" />
         </Button>

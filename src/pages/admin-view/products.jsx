@@ -27,7 +27,6 @@ const AdminProducts = () => {
 
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageURL, setUploadedImageURL] = useState('');
-
   const [imageLoadingState, setImageLoadingState] = useState(false);
 
   const [currentEditedId, setCurrentEditedId] = useState(null);

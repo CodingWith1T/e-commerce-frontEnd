@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton"
+import SearchProducts from "./pages/shopping-view/search";
 
 function App() {
 
@@ -29,11 +30,15 @@ function App() {
     dispatch(checkAuth())
   }, [dispatch]);
 
-  if(isLoading) return <Skeleton className="h-[600px] w-[800] bg-black" />
+  if (isLoading) return <Skeleton className="h-[600px] w-[800] bg-black" />
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
+        <Route path="/" element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          </CheckAuth>
+        } />
         <Route path="/auth" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <AuthLayout />
@@ -63,6 +68,7 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckOut />} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="search" element={<SearchProducts />} />
         </Route>
 
         <Route path="/unauth-page" element={<UnauthPage />} />

@@ -15,7 +15,7 @@ const initialAddressFormData = {
   notes: ''
 }
 
-const Address = ({ setCurrentSelectedAddress }) => {
+const Address = ({ selectedId, setCurrentSelectedAddress }) => {
   const [formData, setFormData] = useState(initialAddressFormData);
   const [currentEditedId, setCurrentEditedId] = useState(null);
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Address = ({ setCurrentSelectedAddress }) => {
   function handleMangeAddress(event) {
     event.preventDefault();
 
-    if(addressList.length >= 3 ){
+    if (addressList.length >= 3) {
       setFormData(initialAddressFormData)
       toast("You can add only 3 addresses")
       return;
@@ -89,11 +89,13 @@ const Address = ({ setCurrentSelectedAddress }) => {
         {
           addressList && addressList.length > 0 ?
             addressList.map(singleAddressItem => (
-            <AddressCard
-            setCurrentSelectedAddress={setCurrentSelectedAddress}
-              addressInfo={singleAddressItem}
-              handleEditAddress={handleEditAddress}
-              handleDeleteAddress={handleDeleteAddress} />)) : null
+              <AddressCard
+                setCurrentSelectedAddress={setCurrentSelectedAddress}
+                addressInfo={singleAddressItem}
+                handleEditAddress={handleEditAddress}
+                handleDeleteAddress={handleDeleteAddress}
+                selectedId={selectedId}
+                 />)) : null
         }
       </div>
       <CardHeader>
