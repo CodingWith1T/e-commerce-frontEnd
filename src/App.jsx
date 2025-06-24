@@ -18,7 +18,6 @@ import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
-import { Skeleton } from "@/components/ui/skeleton"
 import SearchProducts from "./pages/shopping-view/search";
 import { Riple } from "react-loading-indicators";
 
@@ -31,11 +30,14 @@ function App() {
     dispatch(checkAuth())
   }, [dispatch]);
 
-  if (isLoading) {
-    return (
+if (isLoading) {
+  return (
+    <div className="flex items-center justify-center h-screen w-screen">
       <Riple color={["bg-gray-500", "bg-black", "bg-white", "bg-red-500"]} />
-    );
-  }
+    </div>
+  );
+}
+
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
