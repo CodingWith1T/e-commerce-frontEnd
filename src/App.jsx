@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton"
 import SearchProducts from "./pages/shopping-view/search";
+import { Riple } from "react-loading-indicators";
 
 function App() {
 
@@ -32,9 +33,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[600px] w-[800px] rounded-lg shadow-lg">
-        <h1 className="text-5xl font-bold text-black">Ecommerce</h1>
-      </div>
+      <Riple color={["bg-gray-500", "bg-black", "bg-white", "bg-red-500"]} />
     );
   }
 
