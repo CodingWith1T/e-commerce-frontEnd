@@ -58,7 +58,7 @@ const UserCartItemsContent = ({ cartItem }) => {
           <span className='font-semibold'>{cartItem?.quantity}</span>
           <Button onClick={() => handleUpdateQuantity(cartItem, 'plus')} variant="outline" className="h-8 w-8 rounded" size="icon">
             <Plus className='w-4 h-4' />
-            <span className='sr-only'>Decrease</span>
+            <span className='sr-only'>Inscrease</span>
           </Button>
         </div>
       </div>
