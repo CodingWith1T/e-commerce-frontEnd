@@ -32,7 +32,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[600px] w-[800px] bg-neutral-900 rounded-lg shadow-lg">
+      <div className="flex justify-center items-center h-[600px] w-[800px] rounded-lg shadow-lg">
         <h1 className="text-5xl font-bold text-black">Ecommerce</h1>
       </div>
     );
