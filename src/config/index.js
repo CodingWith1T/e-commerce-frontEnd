@@ -87,7 +87,8 @@ export const addProductFormElements = [
             { id: "underarmour", label: "Under Armour" },
             { id: "reebok", label: "Reebok" },
             { id: "gucci", label: "Gucci" },
-            { id: "prada", label: "Prada" }
+            { id: "prada", label: "Prada" },
+            { id: "casio", label: "Casio" },
         ],
     },
     {
@@ -182,6 +183,7 @@ export const brandOptionsMap = {
     reebok: 'Reebok',
     gucci: 'Gucci',
     prada: 'Prada',
+    casio: 'Casio',
 };
 
 export const filterOptions = {
@@ -209,7 +211,8 @@ export const filterOptions = {
         { id: "underarmour", label: "Under Armour" },
         { id: "reebok", label: "Reebok" },
         { id: "gucci", label: "Gucci" },
-        { id: "prada", label: "Prada" }
+        { id: "prada", label: "Prada" },
+        { id: "casio", label: "Casio" },
     ]
 }
 

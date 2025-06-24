@@ -15,6 +15,8 @@ const ShoppingCheckOut = () => {
       currentItem?.salePrice > 0 ? currentItem?.salePrice : currentItem?.price
     ) * currentItem?.quantity, 0) : 0
 
+  const shippingCharge = 49;
+
   return (
 
     <div className='flex flex-col'>
@@ -34,13 +36,26 @@ const ShoppingCheckOut = () => {
               )) : null
           }
           <div className='mt-8 space-y-4'>
-            <div className="flex justify-between">
-              <span className='font-bold'>Total</span>
-              <span className='font-bold'>{totalCartAmount}</span>
+            <div className="flex justify-between mb-8">
+              <span className='text-gray-600'>CART <span className='text-black'>TOTALS</span></span>
+            </div>
+            <div className="flex text-xs justify-between">
+              <span className='font-bold  "text-gray-600'>Subtotal</span>
+              <span className='font-bold'>Rs.{totalCartAmount}</span>
+            </div>
+            <hr />
+            <div className="flex text-xs justify-between">
+              <span className='font-bold  "text-gray-600'>Shipping Fee</span>
+              <span className='font-bold'>Rs.{shippingCharge}</span>
+            </div>
+            <hr />
+            <div className="flex font-extrabold justify-between">
+              <span className='font-bold  "text-black-600'>Total</span>
+              <span className='font-bold'>Rs.{totalCartAmount && totalCartAmount > 0 ? totalCartAmount + shippingCharge : 0}</span>
             </div>
           </div>
-          <div className='mt-4 w-full'>
-            <Button className="w-full">
+          <div className='flex justify-end mt-4 w-full'>
+            <Button className="w-1/2">
               Checkout with Paypal
             </Button>
           </div>
