@@ -24,7 +24,7 @@ const ShoppingOrderdetailsView = () => {
                 <div className="grid gap-2">
                     <div className="flex mt-2 items-center justify-between">
                         <p className='font-medium'>Order Price</p>
-                        <Label>5000</Label>
+                        <Label>Rs.5000</Label>
                     </div>
                 </div>
                 <div className="grid gap-2">
