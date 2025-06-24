@@ -30,7 +30,22 @@ function App() {
     dispatch(checkAuth())
   }, [dispatch]);
 
-  if (isLoading) return <Skeleton className="h-[600px] w-[800] bg-black" />
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[600px] w-[800px] bg-neutral-900 rounded-lg shadow-lg p-6">
+        <div className="space-y-4 w-full">
+          <Skeleton className="h-10 w-3/4 bg-neutral-700 animate-pulse" />
+          <Skeleton className="h-6 w-full bg-neutral-700 animate-pulse" />
+          <Skeleton className="h-6 w-5/6 bg-neutral-700 animate-pulse" />
+          <Skeleton className="h-6 w-2/3 bg-neutral-700 animate-pulse" />
+          <div className="flex space-x-4 mt-6">
+            <Skeleton className="h-10 w-24 bg-neutral-700 animate-pulse rounded" />
+            <Skeleton className="h-10 w-24 bg-neutral-700 animate-pulse rounded" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
