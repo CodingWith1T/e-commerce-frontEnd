@@ -10,7 +10,7 @@ export const getFeatureImages = createAsyncThunk('/common/getFeatureImages',
     async (thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/common/feature/get`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/common/feature/get`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -22,7 +22,7 @@ export const addFeatureImages = createAsyncThunk('/common/addFeatureImages',
     async (image) => {
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/common/feature/add`,
+                `https://e-commerce-backend-production-6761.up.railway.app/api/common/feature/add`,
                 { image }
             );
             return response?.data;

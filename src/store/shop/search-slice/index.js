@@ -10,7 +10,7 @@ export const getSearchResults = createAsyncThunk('/search/getSearchResults',
     async (keyword, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/shop/search/${keyword}`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/search/${keyword}`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);

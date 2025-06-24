@@ -11,7 +11,7 @@ export const addProduct = createAsyncThunk('/products/addProduct',
     async (formData, thunkAPI) => {
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/admin/products/add`,
+                `https://e-commerce-backend-production-6761.up.railway.app/api/admin/products/add`,
                 formData,
                 {
                     headers: {
@@ -30,7 +30,7 @@ export const fetchAllProducts = createAsyncThunk('/products/fetchAllProducts',
     async (thunkAPI) => {
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/admin/products/getAll");
+                "https://e-commerce-backend-production-6761.up.railway.app/api/admin/products/getAll");
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -42,7 +42,7 @@ export const fetchProductById = createAsyncThunk('/products/productById',
     async ({id, thunkAPI}) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/admin/products/getByID/${id}`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/admin/products/getByID/${id}`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -54,7 +54,7 @@ export const editProduct = createAsyncThunk('/products/editProduct',
     async ({id, formData, thunkAPI}) => {
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/admin/products/edit/${id}`,
+                `https://e-commerce-backend-production-6761.up.railway.app/api/admin/products/edit/${id}`,
                 formData,
                 {
                     headers: {
@@ -72,7 +72,7 @@ export const deleteProduct = createAsyncThunk('/products/deleteProduct',
     async (id, thunkAPI) => {
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/admin/products/delete/${id}`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/admin/products/delete/${id}`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);

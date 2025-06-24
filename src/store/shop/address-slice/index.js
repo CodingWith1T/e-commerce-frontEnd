@@ -11,7 +11,7 @@ export const addAddress = createAsyncThunk('address/addAddress',
     async (formData, thunkAPI) => {
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/shop/address/add`,
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/address/add`,
                 formData
             );
             return response?.data;
@@ -25,7 +25,7 @@ export const fetchAddress = createAsyncThunk('address/fetchAddress',
     async (userId, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/shop/address/get/${userId}`
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/address/get/${userId}`
             );
             return response?.data;
         } catch (error) {
@@ -38,7 +38,7 @@ export const editAddress = createAsyncThunk('address/editAddress',
     async ({ userId, addressID, formData }) => {
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/shop/address/update/${userId}/${addressID}`,
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/address/update/${userId}/${addressID}`,
                 formData,
             );
             return response?.data;
@@ -52,7 +52,7 @@ export const deleteAddress = createAsyncThunk('address/deleteAddress',
     async ({ userId, addressId }) => {
         try {
             const response = await axios.delete(
-                `http://localhost:8080/api/shop/address/delete/${userId}/${addressId}`
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/address/delete/${userId}/${addressId}`
             );
             return response?.data;
         } catch (error) {

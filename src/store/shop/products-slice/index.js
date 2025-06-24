@@ -14,7 +14,7 @@ export const fetchAllFilteredProducts = createAsyncThunk('/products/fetchAllFilt
                 sortBy : sortParams,
             })
             const response = await axios.get(
-                `http://localhost:8080/api/shop/products/get?${query}`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/products/get?${query}`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -26,7 +26,7 @@ export const fetchProductDetails = createAsyncThunk('/products/fetchProductDetai
     async (id, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/shop/products/get/${id}`);
+                `https://e-commerce-backend-production-6761.up.railway.app/api/shop/products/get/${id}`);
             return response?.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || error.message);
